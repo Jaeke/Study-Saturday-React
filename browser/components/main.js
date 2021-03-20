@@ -14,8 +14,10 @@ export default class Main extends Component {
   }
 
   async getStudents() {
+    console.log(this.state)
     try {
-      const { data } = await axios.get('/students');
+      const { data } = await axios.get('/student');
+      console.log(data)
       this.setState({ students:data });
     } catch (error) {
       console.error(error)
@@ -23,7 +25,8 @@ export default class Main extends Component {
   }
 
   render() {
-    // const { students } = this.state;
+    const { students } = this.state;
+    console.log(students)
     return (
       <div>
         <h1>Students</h1>
@@ -34,7 +37,7 @@ export default class Main extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.students.map((student) => {
+            {students.map((student) => {
               return (
                 <tr key={student.id}>
                   <td>{student.fullName}</td>
